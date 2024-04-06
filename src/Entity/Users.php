@@ -40,7 +40,7 @@ class Users
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private \DateTimeInterface $updatedAt;
 
-    public function getId(): int
+    public function getId(): string
     {
         return $this->id;
     }

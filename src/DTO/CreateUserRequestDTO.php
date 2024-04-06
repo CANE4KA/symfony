@@ -34,8 +34,8 @@ final class CreateUserRequestDTO implements DTOResolverInterface
     #[Assert\NotBlank(message: 'Birthday cannot be empty.')]
     #[Assert\Type(type: 'string', message: 'Birthday\'s value {{ value }} is not a string.')]
     #[Assert\Regex('/^\d{4}-\d{2}-\d{2}$/', message: 'Birthday\'s value does not fit.')]
-    #[Assert\LessThanOrEqual("2018-01-01")]
-    #[Assert\GreaterThanOrEqual("1870-01-01")]
+    #[Assert\LessThanOrEqual('2018-01-01')]
+    #[Assert\GreaterThanOrEqual('1870-01-01')]
     private string $birthday;
 
     #[Assert\NotBlank(message: 'Phone cannot be empty.')]

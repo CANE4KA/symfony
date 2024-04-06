@@ -21,10 +21,9 @@ class UsersService
      * @throws DuplicateException
      * @throws \Exception
      */
-    public function create(string $email, string $name, string $age, string $sex, string $birthday, string $phone): void
+    public function create(string $email, string $name, int $age, string $sex, string $birthday, string $phone): void
     {
-        if (null !== $this->userRepository->findOneBy(['email' => $email]))
-        {
+        if (null !== $this->userRepository->findOneBy(['email' => $email])) {
             throw new DuplicateException();
         }
 
@@ -45,16 +44,16 @@ class UsersService
      */
     public function read(string $email): string
     {
+        /** @var Users|null $user */
         $user = $this->userRepository->findOneBy(['email' => $email]);
-        if (null === $user)
-        {
+        if (null === $user) {
             throw new UserNotFoundException();
         }
 
-        return $user->getName()                             . ' ' .
-               $user->getAge()                              . ' ' .
-               $user->getSex()                              . ' ' .
-               $user->getBirthday()->format('Y-m-d') . ' ' .
+        return $user->getName().' '.
+               $user->getAge().' '.
+               $user->getSex().' '.
+               $user->getBirthday()->format('Y-m-d').' '.
                $user->getPhone();
     }
 
@@ -63,9 +62,9 @@ class UsersService
      */
     public function update(string $email, string $newEmail, string $newPhone): void
     {
+        /** @var Users|null $user */
         $user = $this->userRepository->findOneBy(['email' => $email]);
-        if (null === $user)
-        {
+        if (null === $user) {
             throw new UserNotFoundException();
         }
 
@@ -82,8 +81,7 @@ class UsersService
     public function delete(string $email): void
     {
         $user = $this->userRepository->findOneBy(['email' => $email]);
-        if (null === $user)
-        {
+        if (null === $user) {
             throw new UserNotFoundException();
         }
 
